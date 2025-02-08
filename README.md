@@ -23,7 +23,7 @@ Set up a multi-node HPC cluster with GPUs/TPUs on GCP.
 ```bash
 gcloud services enable compute.googleapis.com tpu.googleapis.com
 ```
-###1.2 Create Multi-GPU Virtual Machines
+### 1.2 Create Multi-GPU Virtual Machines
 ```bash
 gcloud compute instances create gpu-node-1 gpu-node-2 \
   --machine-type n1-standard-8 \
@@ -34,7 +34,7 @@ gcloud compute instances create gpu-node-1 gpu-node-2 \
 ```
 
 Each VM will have an NVIDIA T4 GPU for distributed training.
-###Step 2: Install Dependencies on Each Node
+### Step 2: Install Dependencies on Each Node
 2.1 Install Required Packages
 Run the following commands on each node:
 ```bash
@@ -50,9 +50,9 @@ Now you can SSH into any node:
 ```bash
 ssh gpu-node-1
 ```
-###Step 3: Implement Distributed Training with MPI/NCCL
+### Step 3: Implement Distributed Training with MPI/NCCL
 This script uses MPI + Horovod for distributed training across multiple GPUs.
-###Step 4: Run Training Across Multiple Nodes
+### Step 4: Run Training Across Multiple Nodes
 Use mpirun to execute the training across multiple nodes:
 ```
 mpirun --allow-run-as-root -np 2 -H gpu-node-1,gpu-node-2 \
@@ -76,7 +76,7 @@ model, optimizer = amp.initialize(model, optimizer, opt_level="O2")
 ```bash
 python train.py --batch-size 256 --lr 0.001
 ```
-###Step 6: Monitor & Benchmark Training
+### Step 6: Monitor & Benchmark Training
 6.1 Use NVIDIA Profiling Tools
 ```bash
 nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv
@@ -111,7 +111,7 @@ terraform apply -auto-approve
 ```
 This will automatically provision and configure multi-node GPU instances.
 
-###Expected Outcomes
+### Expected Outcomes
 10x faster AI training using multi-GPU parallelism.
 Reduced GPU idle time with optimized NCCL/MPI communication.
 Fully automated training pipeline with Terraform.
